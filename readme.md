@@ -19,3 +19,14 @@ to see what's being done. If you're using PhpStorm or
 some other IDE which can show you side-by-side diffs
 of the files updated in any given commit, I very much
 recommend using that.
+
+### Steps described by the commits
+
+#### 1. Basic Nittro installation
+
+1. Download a custom Nittro build
+2. Link Nittro in `@layout.latte`
+3. Install the `nittro/nette-bridges` Composer package
+4. Make `BasePresenter` extend `Nittro\Bridges\NittroUI\Presenter`
+   instead of `Nette\Application\UI\Presenter`
+5. Setup default snippets in base presenter's `startup()` method

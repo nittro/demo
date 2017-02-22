@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "7ae9a1b0bbb7cd751d21e9edc19a9ba1",
+    "content-hash": "86038086874fc47609c2f70bdad75d9d",
     "packages": [
         {
             "name": "latte/latte",
@@ -1167,6 +1167,44 @@
                 "validation"
             ],
             "time": "2018-05-02T17:16:08+00:00"
+        },
+        {
+            "name": "nittro/nette-bridges",
+            "version": "v2.0.8",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/nittro/nette-bridges.git",
+                "reference": "db61edcf2e6348259311303862688363b70e9d6c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/nittro/nette-bridges/zipball/db61edcf2e6348259311303862688363b70e9d6c",
+                "reference": "db61edcf2e6348259311303862688363b70e9d6c",
+                "shasum": ""
+            },
+            "require-dev": {
+                "latte/latte": "^2.4",
+                "nette/application": "^2.4"
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "src/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Dan Kadera",
+                    "email": "me@subsonic.cz"
+                }
+            ],
+            "description": "Nittro PHP bridges",
+            "homepage": "https://www.nittro.org/",
+            "time": "2018-02-26T17:26:51+00:00"
         },
         {
             "name": "tracy/tracy",

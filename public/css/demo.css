@@ -21,3 +21,20 @@ body {
     line-height: 1;
     color: #333;
 }
+
+
+
+
+/* nittro <-> bootstrap compatibility */
+
+.navbar-fixed-top {
+    z-index: 900;
+}
+
+.nittro-flash-global-holder {
+    z-index: 1100;
+}
+
+.nittro-flash.nittro-flash-success {
+    background-color: #dff0d8;
+}

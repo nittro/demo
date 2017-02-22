@@ -19,7 +19,8 @@
                     {control tags}
 
                     <a n:href="edit $post->id" class="btn btn-warning">Edit</a>
-                    <a n:href="delete $post->id" class="btn btn-danger" onclick="return window.confirm('Are you sure?');">Delete</a>
+                    <!-- Replace window.confirm() with data-prompt -->
+                    <a n:href="delete $post->id" class="btn btn-danger" data-prompt="Are you sure?">Delete</a>
                 </div>
             </div>
         </aside>

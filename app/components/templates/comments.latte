@@ -4,7 +4,8 @@
         {foreach $comments as $comment}
             <li class="list-group-item">
                 <!-- Disable default transition when removing a comment -->
-                <a n:href="delete! $comment->id" class="btn btn-xs btn-danger pull-right" title="Remove comment" onclick="return window.confirm('Are you sure?');" data-transition="false">
+                <!-- Replace window.confirm() with data-prompt -->
+                <a n:href="delete! $comment->id" class="btn btn-xs btn-danger pull-right" title="Remove comment" data-prompt="Are you sure?" data-transition="false">
                     <i class="glyphicon glyphicon-trash"></i>
                 </a>
                 <p class="list-group-item-text"><strong>{$comment->author_name}:</strong> {$comment->content}</p>

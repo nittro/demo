@@ -43,3 +43,9 @@ recommend using that.
 6. Replace `redirect()` with `postGet()` & `redrawControl()` where
    applicable to save roundtrips
 7. Update site CSS to make everything beautiful
+
+
+#### 3. Replace `window.confirm()` with something nicer
+
+1. Replace inline `window.confirm()` calls with the `data-prompt` attribute
+2. Update stylesheet to make buttons in Nittro dialog look like Bootstrap buttons

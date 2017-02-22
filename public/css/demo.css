@@ -1,0 +1,23 @@
+body {
+    padding-top: 70px;
+    padding-bottom: 30px;
+}
+
+.post-image {
+    margin: 0 0 2em;
+}
+
+.post-content {
+    margin: 0 0 2em;
+    font-size: 1.4em;
+}
+
+.post-content::first-letter {
+    display: block;
+    float: left;
+    margin: 0 5px 2px 0;
+    font-family: "Times", serif;
+    font-size: 4em;
+    line-height: 1;
+    color: #333;
+}

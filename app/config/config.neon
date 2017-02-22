@@ -1,0 +1,23 @@
+parameters:
+
+
+application:
+    errorPresenter: Error
+    mapping:
+        *: App\*Module\Presenters\*Presenter
+
+
+session:
+    expiration: 14 days
+
+database:
+    dsn: 'sqlite:%appDir%/models/blog.s3db'
+    debugger: true
+    options: [
+        lazy: true
+    ]
+
+
+services:
+    router: App\RouterFactory::createRouter
+    - App\Models\BlogModel(picturePath: "%wwwDir%/images/posts")

@@ -1,0 +1,3 @@
+vendor/
+node_modules/
+app/models/blog.s3db

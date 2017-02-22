@@ -1,8 +1,10 @@
 <div class="well">
-    <ul class="list-group">
+    <!-- Mark the comment list as a snippet so that we can redraw it independently -->
+    <ul n:snippet="list" class="list-group">
         {foreach $comments as $comment}
             <li class="list-group-item">
-                <a n:href="delete! $comment->id" class="btn btn-xs btn-danger pull-right" title="Remove comment" onclick="return window.confirm('Are you sure?');">
+                <!-- Disable default transition when removing a comment -->
+                <a n:href="delete! $comment->id" class="btn btn-xs btn-danger pull-right" title="Remove comment" onclick="return window.confirm('Are you sure?');" data-transition="false">
                     <i class="glyphicon glyphicon-trash"></i>
                 </a>
                 <p class="list-group-item-text"><strong>{$comment->author_name}:</strong> {$comment->content}</p>
@@ -11,30 +13,37 @@
         {/foreach}
     </ul>
 
-    <div>
-        <div n:foreach="$flashes as $flash" n:class="alert, 'alert-' . $flash->type">{$flash->message}</div>
-    </div>
+    <!-- Updated flashes rendering -->
+    <div n:flashes></div>
 
-    <form n:name="commentForm" class="form-horizontal">
-        <ul n:if="$form->hasErrors()">
-            <li n:foreach="$form->getErrors() as $error" class="text-danger">{$error}</li>
-        </ul>
+    <!-- Disable default transition when adding a comment -->
+    <form n:name="commentForm" class="form-horizontal" data-transition="false">
+        <!--
+            Render form errors - this is like the flash messages macro, except for form
+            and input errors - the same HTML will be generated on the server side using
+            this macro as the HTML that Nittro would generate during client-side validation
+         -->
+        <ul n:formErrors class="form-errors"></ul>
+
         <div class="form-group">
             <label n:name="author_name" class="control-label col-sm-4" />
             <div class="col-sm-8">
                 <input n:name="author_name" class="form-control" />
+                <ul n:errors="author_name" class="form-errors"></ul>
             </div>
         </div>
         <div class="form-group">
             <label n:name="author_email" class="control-label col-sm-4" />
             <div class="col-sm-8">
                 <input n:name="author_email" class="form-control" />
+                <ul n:errors="author_email" class="form-errors"></ul>
             </div>
         </div>
         <div class="form-group">
             <label n:name="content" class="control-label col-sm-4" />
             <div class="col-sm-8">
                 <textarea n:name="content" class="form-control" />
+                <ul n:errors="content" class="form-errors"></ul>
             </div>
         </div>
         <div class="form-group">

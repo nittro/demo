@@ -30,3 +30,16 @@ recommend using that.
 4. Make `BasePresenter` extend `Nittro\Bridges\NittroUI\Presenter`
    instead of `Nette\Application\UI\Presenter`
 5. Setup default snippets in base presenter's `startup()` method
+
+
+#### 2. Making things play nicer together
+
+1. Register the Nittro Latte macros in `config.neon`
+2. Update flash messages rendering in templates to make use of the
+   `n:flash` macro in order to normalize flash behaviour and appearance
+3. Add form error rendering macros to templates
+4. Add a default transition to the content snippet in `@layout.latte`
+5. Disable transition for some actions (like adding / removing a comment)
+6. Replace `redirect()` with `postGet()` & `redrawControl()` where
+   applicable to save roundtrips
+7. Update site CSS to make everything beautiful

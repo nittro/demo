@@ -6,6 +6,10 @@ application:
     mapping:
         *: App\*Module\Presenters\*Presenter
 
+# Register Nittro Latte macros
+latte:
+    macros:
+        - Nittro\Bridges\NittroLatte\NittroMacros
 
 session:
     expiration: 14 days

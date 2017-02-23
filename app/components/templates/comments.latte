@@ -1,11 +1,17 @@
 <div class="well">
     <!-- Mark the comment list as a snippet so that we can redraw it independently -->
-    <ul n:snippet="list" class="list-group">
+    <!--
+        Add the child snippet mask using n:dynamic, add the 'nittro-snippet-container' class
+        and tell Nittro how to create new dynamic snippets using 'data-dynamic-element'
+     -->
+    <ul n:snippet="list" n:dynamic="comment-\d+" data-dynamic-element="li.list-group-item" class="list-group nittro-snippet-container">
         {foreach $comments as $comment}
-            <li class="list-group-item">
-                <!-- Disable default transition when removing a comment -->
-                <!-- Replace window.confirm() with data-prompt -->
-                <a n:href="delete! $comment->id" class="btn btn-xs btn-danger pull-right" title="Remove comment" data-prompt="Are you sure?" data-transition="false">
+            <li class="list-group-item" n:snippet="comment-$comment->id">
+                <!--
+                    Replace the data-transition="false" attribute with data-dynamic-remove; set the value to
+                    the comment's ID selector using the "snippetId" macro
+                 -->
+                <a n:href="delete! $comment->id" class="btn btn-xs btn-danger pull-right" title="Remove comment" data-prompt="Are you sure?" data-dynamic-remove="#{snippetId comment-$comment->id}">
                     <i class="glyphicon glyphicon-trash"></i>
                 </a>
                 <p class="list-group-item-text"><strong>{$comment->author_name}:</strong> {$comment->content}</p>

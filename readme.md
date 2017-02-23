@@ -49,3 +49,13 @@ recommend using that.
 
 1. Replace inline `window.confirm()` calls with the `data-prompt` attribute
 2. Update stylesheet to make buttons in Nittro dialog look like Bootstrap buttons
+
+
+#### 4. Use dynamic snippets to enhance comments
+
+1. Update component code: send payload instead of rendering when a
+   comment is deleted and render only new comment when one is added
+2. Update template: add `n:dynamic`, specify dynamic element and
+   create dynamic snippets out of list items; also change remove button
+   behaviour to use client-side dynamic snippet removal
+3. Add some animations when a comment is added or removed

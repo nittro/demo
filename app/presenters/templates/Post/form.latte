@@ -60,80 +60,110 @@
 
 <script type="application/javascript">
     window._stack.push([function (di, DOM) {
+    	/*
+    	    Keep references to the widgets outside the closure
+    	    so that we can access them in the teardown callback
+    	 */
+    	var checkList,
+            overlay,
+            dropzone;
+
 
     	/*
-    	    Create the CheckList using a DI factory. Try clicking
-    	    on the first checkbox and dragging over the others.
-    	    You'll hate me for showing you this UX principle
-    	    once you realise just how many apps you're using daily
-    	    that don't have this feature.
+    	    Wrap the initialisation code with setup and teardown callbacks
     	 */
-
-        di.create('checkList', [{
-        	container: 'frm-postForm-tagsContainer',
-            boundary: 'div.checkbox'
-        }]);
+        di.getService('page').getSnippet('frm-postForm')
+            .setup(function () {
 
 
-        /*
-            DropZone initialisation. It looks like it's a lot of code,
-            but really, it's mostly just defining how the UI should behave
-            during a drag & drop operation.
-         */
+                /*
+                    Create the CheckList using a DI factory. Try clicking
+                    on the first checkbox and dragging over the others.
+                    You'll hate me for showing you this UX principle
+                    once you realise just how many apps you're using daily
+                    that don't have this feature.
+                 */
 
-        var overlay = DOM.create('div', { id: 'dropzone' });
-        document.body.appendChild(overlay);
+                di.create('checkList', [{
+                    container: 'frm-postForm-tagsContainer',
+                    boundary: 'div.checkbox'
+                }]);
 
 
-        /*
-            Note how we're creating the DropZone from the form's original
-            upload field - the DropZone will automatically have the same
-            validation rules as the field and will also handle files that
-            the user selected using the field - so the preview feature
-            below will work regardless of whether the user selected the file
-            using the upload field or dragged it into the browser from Finder
-         */
-        var dropzone = di.create('dropZone', {
-        	from: DOM.getById('frm-postForm-picture')
-        });
+                /*
+                    DropZone initialisation. It looks like it's a lot of code,
+                    but really, it's mostly just defining how the UI should behave
+                    during a drag & drop operation.
+                 */
 
-        dropzone.attach(overlay);
+                overlay = DOM.create('div', { id: 'dropzone' });
+                document.body.appendChild(overlay);
 
-        dropzone.on('body-enter', function () {
-            DOM.toggleClass('dropzone', 'visible', true);
-        });
 
-        dropzone.on('body-leave drop', function () {
-            DOM.toggleClass('dropzone', 'visible', false);
-        });
+                /*
+                    Note how we're creating the DropZone from the form's original
+                    upload field - the DropZone will automatically have the same
+                    validation rules as the field and will also handle files that
+                    the user selected using the field - so the preview feature
+                    below will work regardless of whether the user selected the file
+                    using the upload field or dragged it into the browser from Finder
+                 */
+                dropzone = di.create('dropZone', {
+                    from: DOM.getById('frm-postForm-picture')
+                });
 
-        dropzone.on('error', function (evt) {
-            di.getService('flashes').add(evt.data.message, 'error');
-        });
+                dropzone.attach(overlay);
 
-        dropzone.on('file', function (evt) {
-            removePreview();
+                dropzone.on('body-enter', function () {
+                    DOM.toggleClass('dropzone', 'visible', true);
+                });
 
-            dropzone.loadImage(evt.data.file).then(function (img) {
-                DOM.setStyle('frm-postForm-picturePreview', 'backgroundImage', 'url(' + img.src + ')');
-                DOM.toggleClass('frm-postForm-picturePreview', 'visible', true);
+                dropzone.on('body-leave drop', function () {
+                    DOM.toggleClass('dropzone', 'visible', false);
+                });
+
+                dropzone.on('error', function (evt) {
+                    di.getService('flashes').add(evt.data.message, 'error');
+                });
+
+                dropzone.on('file', function (evt) {
+                    removePreview();
+
+                    dropzone.loadImage(evt.data.file).then(function (img) {
+                        DOM.setStyle('frm-postForm-picturePreview', 'backgroundImage', 'url(' + img.src + ')');
+                        DOM.toggleClass('frm-postForm-picturePreview', 'visible', true);
+                    });
+                });
+
+                DOM.addListener('frm-postForm-pictureField', 'click', function (evt) {
+                    if (DOM.hasClass(evt.target, 'close') || DOM.hasClass(evt.target.parentNode, 'close')) {
+                        evt.preventDefault();
+                        removePreview();
+                    }
+                });
+
+                function removePreview() {
+                    DOM.toggleClass('frm-postForm-picturePreview', 'visible', false);
+
+                    while (dropzone.hasFiles()) {
+                        dropzone.removeFile(0);
+                    }
+                }
+
+
+            })
+            .teardown(function () {
+            	/*
+            	    And now let's clean up after ourselves - the teardown
+            	    callback will only be called when the snippet is about
+            	    to be removed from the page or when it's content is about
+            	    to be overwritten, so it's the ideal place to clean stuff up
+            	 */
+                checkList && checkList.destroy();
+                dropzone && dropzone.destroy();
+                overlay && overlay.parentNode.removeChild(overlay);
+                checkList = dropzone = overlay = null;
             });
-        });
-
-        DOM.addListener('frm-postForm-pictureField', 'click', function (evt) {
-            if (DOM.hasClass(evt.target, 'close') || DOM.hasClass(evt.target.parentNode, 'close')) {
-            	evt.preventDefault();
-                removePreview();
-            }
-        });
-
-        function removePreview() {
-            DOM.toggleClass('frm-postForm-picturePreview', 'visible', false);
-
-            while (dropzone.hasFiles()) {
-                dropzone.removeFile(0);
-            }
-        }
 
     }, {
     	DOM: 'Utils.DOM'

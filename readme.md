@@ -71,3 +71,9 @@ recommend using that.
 
 1. Initialise DropZone in post editor template
 2. Update stylesheets
+
+
+#### 7. ... but let's also be nice and clean up after ourselves
+
+1. Wrap CheckList and DropZone initialisation in snippet setup callback
+2. Add snippet teardown callback

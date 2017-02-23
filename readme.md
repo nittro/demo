@@ -65,3 +65,9 @@ recommend using that.
 
 1. Add `_stack` initialisation code in `@layout.latte`
 2. Initialise CheckList in post editor template
+
+
+#### 6. Let's be 2017 and support drag & drop uploads
+
+1. Initialise DropZone in post editor template
+2. Update stylesheets

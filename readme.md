@@ -59,3 +59,9 @@ recommend using that.
    create dynamic snippets out of list items; also change remove button
    behaviour to use client-side dynamic snippet removal
 3. Add some animations when a comment is added or removed
+
+
+#### 5. Try out the CheckList component
+
+1. Add `_stack` initialisation code in `@layout.latte`
+2. Initialise CheckList in post editor template

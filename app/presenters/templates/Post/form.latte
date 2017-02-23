@@ -30,7 +30,9 @@
     </div>
     <div class="form-group">
         <label n:name="tags" class="control-label col-md-4" />
-        <div class="col-md-8">
+
+        <!-- Add an ID here for easier scripted access to the element -->
+        <div class="col-md-8" id="frm-postForm-tagsContainer">
             {foreach $form['tags']->getItems() as $k => $v}
                 <div class="checkbox">
                     <label>
@@ -52,3 +54,22 @@
         </div>
     </div>
 </form>
+
+<script type="application/javascript">
+    window._stack.push(function (di) {
+
+    	/*
+    	    Create the CheckList using a DI factory. Try clicking
+    	    on the first checkbox and dragging over the others.
+    	    You'll hate me for showing you this UX principle
+    	    once you realise just how many apps you're using daily
+    	    that don't have this feature.
+    	 */
+
+        di.create('checkList', [{
+        	container: 'frm-postForm-tagsContainer',
+            boundary: 'div.checkbox'
+        }]);
+
+    });
+</script>

@@ -18,7 +18,7 @@
                 <div class="panel-body">
                     {control tags}
 
-                    <a n:href="edit $post->id" class="btn btn-warning">Edit</a>
+                    <a n:href="edit $post->id" data-dialog="form post: {snippetId content}" data-history="false" data-transition="false" class="btn btn-warning">Edit</a>
                     <!-- Replace window.confirm() with data-prompt -->
                     <a n:href="delete $post->id" class="btn btn-danger" data-prompt="Are you sure?">Delete</a>
                 </div>

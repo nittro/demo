@@ -47,6 +47,13 @@ class PostPresenter extends BasePresenter {
 
     public function renderNew() {
         $this->setView('form');
+
+        /*
+            Only redraw the main content snippet which will be shown
+            inside a dialog. We could redraw other snippets here,
+            but in this scenario it doesn't make much sense.
+         */
+        $this->redrawControl('content');
     }
 
 
@@ -58,6 +65,11 @@ class PostPresenter extends BasePresenter {
             $this->setView('form');
             $this->getComponent('postForm')->setDefaults($this->model->getPostFormDefaults($post));
             $this->template->post = $post;
+
+            /*
+                Same as above.
+             */
+            $this->redrawControl('content');
 
         } catch (\Exception $e) {
             $this->error('Post not found');
@@ -71,8 +83,13 @@ class PostPresenter extends BasePresenter {
         $post = $this->model->savePost($values);
 
         $this->flashMessage('Your changes have been saved', 'success');
-        $this->redirect('default', ['id' => $post->id]);
 
+        /*
+            Close the dialog if it was open.
+         */
+        $this->closeDialog('post');
+
+        $this->redirect('default', ['id' => $post->id]);
     }
 
     public function createComponentPostForm() : Form {

@@ -77,3 +77,12 @@ recommend using that.
 
 1. Wrap CheckList and DropZone initialisation in snippet setup callback
 2. Add snippet teardown callback
+
+
+#### 8. Let's get rid of the separate page for the Post form
+
+1. Add the appropriate `data-dialog`, `data-history` and `data-transition`
+   attributes to links that should open in a dialog
+2. Add the `data-action="cancel"` attribute to the cancel button of the
+   form to improve behaviour when the form is open in a dialog
+3. Update snippet redrawing behaviour

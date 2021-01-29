@@ -4,7 +4,7 @@
   <h3>Post Editor</h3>
 </div>
 
-<form n:name="postForm" class="form-horizontal">
+<form n:name="postForm" class="form-horizontal" n:dialog="@self:content">
   <!-- Adding form error macros, same as we did for the comment form -->
   <ul n:errors.form class="form-errors"></ul>
   <div class="form-group">
@@ -52,9 +52,9 @@
     <div class="col-md-offset-4 col-md-8">
       <button n:name="save" class="btn btn-primary" />
       {ifset $post}
-        <a n:href="default $post->id" class="btn btn-link">Cancel</a>
+        <a n:href="default $post->id" class="btn btn-link" data-action="cancel" data-transition="false">Cancel</a>
       {else}
-        <a n:href="Homepage:default" class="btn btn-link">Cancel</a>
+        <a n:href="Homepage:default" class="btn btn-link" data-action="cancel" data-transition="false">Cancel</a>
       {/ifset}
     </div>
   </div>

@@ -27,7 +27,10 @@
       </div>
       <div class="panel panel-default">
         <div class="panel-body">
-          <a n:href="edit $post->id" class="btn btn-sm btn-warning">Edit</a>
+          <a n:href="edit $post->id" n:dialog.form="post:content"
+                  data-history="false"
+                  data-transition="false"
+                  class="btn btn-sm btn-warning">Edit</a>
           <!-- Replace window.confirm() with data-prompt -->
           <a n:href="delete $post->id" class="btn btn-sm btn-danger"
                   data-prompt="Are you sure?">Delete</a>

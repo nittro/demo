@@ -199,3 +199,41 @@ body {
     text-decoration: underline;
     background-color: transparent;
 }
+
+
+
+
+/* dynamic snippet transitions */
+
+.nittro-dynamic-remove {
+    -webkit-transition: opacity 1s;
+    transition: opacity 1s;
+    opacity: 0;
+}
+
+.nittro-dynamic-add {
+    position: relative;
+    -webkit-transition: opacity 0.6s;
+    transition: opacity 0.6s;
+}
+
+.nittro-dynamic-add::before {
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 100;
+    width: 100%;
+    height: 100%;
+    border-radius: inherit;
+    background: #ffa;
+    -webkit-transition: opacity 0.6s;
+    transition: opacity 0.6s;
+    opacity: 0;
+    content: '';
+}
+
+.nittro-dynamic-add.nittro-transition-middle::before {
+    -webkit-transition: none;
+    transition: none;
+    opacity: 1;
+}

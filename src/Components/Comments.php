@@ -42,8 +42,14 @@ class Comments extends Control
     /* Replace $presenter->redirect() with $presenter->postGet() ... */
     $this->getPresenter()->postGet('this');
 
-    /* ... and redraw the appropriate snippets. */
-    $this->redrawControl('list');
+    /* Now we need to redraw a nonexistent snippet instead of the comment list.
+       This is because we still want Nette to render an AJAX response at this point,
+       but we know we don't want to redraw any snippets of this component and we
+       shouldn't know or care if any other component will be redrawing snippets
+       in reaction to us deleting the comment here - but if no component has any
+       snippets marked for redrawing Nette will just render a plain text/html response
+       instead of a proper AJAX response. */
+    $this->redrawControl('dummy');
   }
 
   public function render() : void
@@ -56,13 +62,18 @@ class Comments extends Control
 
   public function addComment(CommentForm $form, array $values) : void
   {
-    $this->model->addComment($this->postId, $values);
+    $comment = $this->model->addComment($this->postId, $values);
 
     $this->flashMessage('Comment added.', 'success');
 
     /* Same as above. */
     $this->getPresenter()->postGet('this');
     $this->redrawControl('list');
+
+    /* This will make the component render only the newly added comment.
+       Check out the getComments() method - it only loads comments from
+       the model if they haven't been previously set elsewhere. */
+    $this->comments = [ $comment ];
   }
 
 

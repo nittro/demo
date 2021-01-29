@@ -1,0 +1,25 @@
+{block content}
+
+<div class="row">
+  <div class="col-lg-8">
+    {if count($lastPosts) > 0}
+      <div class="list-group">
+        {foreach $lastPosts as $post}
+          <a n:href="Post: $post->id" class="list-group-item">
+            <h3 class="list-group-item-heading">{$post->title}</h3>
+            <p class="list-group-item-text">{$post->content|truncate:80}</p>
+          </a>
+        {/foreach}
+      </div>
+    {else}
+      <div class="alert alert-warning">Sorry, there are no posts here</div>
+    {/if}
+  </div>
+  <aside class="col-lg-4">
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <a n:href="Post:new" class="btn btn-primary">Create post</a>
+      </div>
+    </div>
+  </aside>
+</div>

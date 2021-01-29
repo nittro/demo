@@ -1,0 +1,28 @@
+extensions:
+  - Contributte\EventDispatcher\DI\EventDispatcherExtension
+
+parameters:
+
+application:
+  errorPresenter: Error
+  mapping:
+    *: App\*Module\Presenters\*Presenter
+
+session:
+  expiration: 14 days
+
+di:
+  export:
+    parameters: no
+    tags: no
+
+services:
+  - App\Router\RouterFactory::createRouter
+
+  - App\Model\BlogModel(dsn: 'sqlite:%appDir%/../var/db/blog.s3db', picturePath: "%appDir%/../public/images/posts")
+
+  - App\Components\ICommentCountFactory()
+  - App\Components\ICommentsFactory()
+  - App\Components\ITagsFactory()
+
+  - App\Forms\IPostFormFactory()

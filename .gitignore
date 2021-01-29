@@ -1,0 +1,7 @@
+/.nittro/node_modules
+/vendor/
+/node_modules/
+/var/
+/public/css/bootstrap
+/public/images/
+/etc/local.neon

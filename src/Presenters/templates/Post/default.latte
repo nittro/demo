@@ -1,0 +1,37 @@
+{block header}
+  <h1>{$post->title}</h1>
+{/block}
+
+{block content}
+  <div class="row">
+    <div class="col-lg-8">
+      <div n:if="$post->has_picture" class="post-image">
+        <img
+                src="{$basePath}/images/posts/{$post->id}.jpg?{time()}"
+                class="center-block img-responsive"
+                alt="{$post->title}" />
+      </div>
+
+      <p class="post-content">{$post->content|breaklines}</p>
+
+      {control comments}
+    </div>
+    <aside class="col-lg-4">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <p>
+            {control commentCount} | <strong>tags:</strong>
+          </p>
+          {control tags}
+        </div>
+      </div>
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <a n:href="edit $post->id" class="btn btn-sm btn-warning">Edit</a>
+          <a n:href="delete $post->id" class="btn btn-sm btn-danger"
+                  onclick="return window.confirm('Are you sure?');">Delete</a>
+        </div>
+      </div>
+    </aside>
+  </div>
+{/block}

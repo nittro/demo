@@ -1,0 +1,49 @@
+<div class="well">
+  <ul class="list-group">
+    {foreach $comments as $comment}
+      <li class="list-group-item">
+        <a n:href="delete! $comment->id"
+                class="btn btn-xs btn-danger pull-right"
+                title="Remove comment"
+                onclick="return window.confirm('Are you sure?');">
+          <i class="glyphicon glyphicon-trash"></i>
+        </a>
+        <p class="list-group-item-text"><strong>{$comment->author_name}:</strong> {$comment->content}</p>
+        <p class="list-group-item-text text-muted"><small>{$comment->posted_on|date:'D, j/M/Y H:i'}</small></p>
+      </li>
+    {/foreach}
+  </ul>
+
+  <div>
+    <div n:foreach="$flashes as $flash" n:class="alert, 'alert-' . $flash->type">{$flash->message}</div>
+  </div>
+
+  <form n:name="commentForm" class="form-horizontal">
+    <ul n:if="$form->hasErrors()">
+      <li n:foreach="$form->getErrors() as $error" class="text-danger">{$error}</li>
+    </ul>
+    <div class="form-group">
+      <label n:name="author_name" class="control-label col-sm-4" />
+      <div class="col-sm-8">
+        <input n:name="author_name" class="form-control" />
+      </div>
+    </div>
+    <div class="form-group">
+      <label n:name="author_email" class="control-label col-sm-4" />
+      <div class="col-sm-8">
+        <input n:name="author_email" class="form-control" />
+      </div>
+    </div>
+    <div class="form-group">
+      <label n:name="content" class="control-label col-sm-4" />
+      <div class="col-sm-8">
+        <textarea n:name="content" class="form-control" />
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-sm-offset-4 col-sm-8">
+        <button n:name="add" class="btn btn-primary" />
+      </div>
+    </div>
+  </form>
+</div>

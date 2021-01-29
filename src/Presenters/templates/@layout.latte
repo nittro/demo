@@ -7,11 +7,23 @@
 
     <title>Nittro Demo</title>
 
+    <!--
+        In a production app we'd probably use the Nittro Custom Builder to
+        pack all the stylesheets into one file, but for the demo purposes
+        this will do just as nicely.
+     -->
+
     <link rel="stylesheet" type="text/css" href="{$basePath}/css/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="{$basePath}/css/nittro.min.css" />
     <link rel="stylesheet" type="text/css" href="{$basePath}/css/demo.css" />
   </head>
 
   <body>
+    <!--
+        Don't forget "async" and "defer" :-)
+     -->
+    <script type="application/javascript" src="{$basePath}/js/nittro.min.js" async defer></script>
+
     <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">

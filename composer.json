@@ -22,7 +22,8 @@
 		"nette/utils": "^3.2",
 		"latte/latte": "^2.9",
 		"tracy/tracy": "^2.8",
-		"contributte/event-dispatcher": "^0.8.0"
+		"contributte/event-dispatcher": "^0.8.0",
+		"nittro/nette-bridges": "^2.1"
 	},
 	"require-dev": {
 		"nette/tester": "^2.3",

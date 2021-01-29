@@ -16,8 +16,13 @@
   </div>
   <div class="form-group">
     <label n:name="picture" class="control-label col-md-4" />
-    <div class="col-md-8">
+    <!-- Add an ID here for easier scripted access to the element -->
+    <div id="frm-postForm-pictureField" class="col-md-8">
       <input n:name="picture" class="form-control" />
+      <!-- Add a container for the preview -->
+      <div id="frm-postForm-picturePreview">
+          <button type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      </div>
       <ul n:errors="picture" class="form-errors"></ul>
     </div>
   </div>
@@ -56,7 +61,7 @@
 </form>
 
 <script type="application/javascript">
-  window._stack.push(function (di) {
+    window._stack.push([function (di, DOM) {
 
     /*
         Create the CheckList using a DI factory. Try clicking
@@ -71,5 +76,68 @@
         boundary: 'div.checkbox'
     }]);
 
-  });
+
+    /*
+        DropZone initialisation. It looks like it's a lot of code,
+        but really, it's mostly just defining how the UI should behave
+        during a drag & drop operation.
+     */
+
+    var overlay = DOM.create('div', { id: 'dropzone' });
+    document.body.appendChild(overlay);
+
+
+    /*
+        Note how we're creating the DropZone from the form's original
+        upload field - the DropZone will automatically have the same
+        validation rules as the field and will also handle files that
+        the user selected using the field - so the preview feature
+        below will work regardless of whether the user selected the file
+        using the upload field or dragged it into the browser from Finder
+     */
+    var dropzone = di.create('dropZone', {
+      from: DOM.getById('frm-postForm-picture')
+    });
+
+    dropzone.attach(overlay);
+
+    dropzone.on('body-enter', function () {
+      DOM.toggleClass('dropzone', 'visible', true);
+    });
+
+    dropzone.on('body-leave drop', function () {
+      DOM.toggleClass('dropzone', 'visible', false);
+    });
+
+    dropzone.on('error', function (evt) {
+      di.getService('flashes').add(evt.data.message, 'error');
+    });
+
+    dropzone.on('file', function (evt) {
+      removePreview();
+
+      dropzone.loadImage(evt.data.file).then(function (img) {
+        DOM.setStyle('frm-postForm-picturePreview', 'backgroundImage', 'url(' + img.src + ')');
+        DOM.toggleClass('frm-postForm-picturePreview', 'visible', true);
+      });
+    });
+
+    DOM.addListener('frm-postForm-pictureField', 'click', function (evt) {
+      if (DOM.hasClass(evt.target, 'close') || DOM.hasClass(evt.target.parentNode, 'close')) {
+        evt.preventDefault();
+        removePreview();
+      }
+    });
+
+    function removePreview() {
+      DOM.toggleClass('frm-postForm-picturePreview', 'visible', false);
+
+      while (dropzone.hasFiles()) {
+        dropzone.removeFile(0);
+      }
+    }
+
+  }, {
+    DOM: 'Utils.DOM'
+  }]);
 </script>

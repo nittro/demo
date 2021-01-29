@@ -23,7 +23,8 @@
 		"latte/latte": "^2.9",
 		"tracy/tracy": "^2.8",
 		"contributte/event-dispatcher": "^0.8.0",
-		"nittro/nette-bridges": "^2.1"
+		"nittro/nette-bridges": "^2.1",
+		"jahudka/component-events": "^2.0"
 	},
 	"require-dev": {
 		"nette/tester": "^2.3",

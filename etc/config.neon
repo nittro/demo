@@ -1,6 +1,7 @@
 extensions:
   - Contributte\EventDispatcher\DI\EventDispatcherExtension
   - Nittro\Bridges\NittroDI\NittroExtension
+  - Jahudka\ComponentEvents\ComponentEventsExtension
 
 parameters:
 

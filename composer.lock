@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "58b5bcdf14a9d3175895f0bcca832a4f",
+    "content-hash": "3598f79f0bfd01d8dd3ca4181b7fecb4",
     "packages": [
         {
             "name": "contributte/event-dispatcher",
@@ -72,6 +72,57 @@
                 "source": "https://github.com/contributte/event-dispatcher/tree/v0.8.0"
             },
             "time": "2020-12-10T14:46:48+00:00"
+        },
+        {
+            "name": "jahudka/component-events",
+            "version": "v2.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/jahudka/component-events.git",
+                "reference": "cbe9564680dc9de1de955f9cc7432cfac4232e17"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/jahudka/component-events/zipball/cbe9564680dc9de1de955f9cc7432cfac4232e17",
+                "reference": "cbe9564680dc9de1de955f9cc7432cfac4232e17",
+                "shasum": ""
+            },
+            "require": {
+                "nette/application": "^2.4.16 || ^3.0.6",
+                "nette/component-model": "^2.4 || ^3.0",
+                "nette/di": "^2.4 || ^v3.0",
+                "php": ">=7.4"
+            },
+            "require-dev": {
+                "contributte/nextras-orm-events": "^0.7.0",
+                "doctrine/event-manager": "^1.1",
+                "nextras/orm": "^3.1",
+                "phpunit/phpunit": "^9.5",
+                "symfony/event-dispatcher": "^4.4 || ^5.1"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Jahudka\\ComponentEvents\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Dan Kadera",
+                    "email": "me@subsonic.cz"
+                }
+            ],
+            "description": "Relay events to lazily created components",
+            "homepage": "https://github.com/jahudka/component-events",
+            "support": {
+                "issues": "https://github.com/jahudka/component-events/issues",
+                "source": "https://github.com/jahudka/component-events/tree/v2.0.2"
+            },
+            "time": "2021-01-29T22:27:53+00:00"
         },
         {
             "name": "latte/latte",

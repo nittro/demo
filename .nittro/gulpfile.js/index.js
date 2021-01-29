@@ -23,8 +23,8 @@ const builder = new nittro.Builder({
     },
     extras: {
         checklist: false,
-        dialogs: false,
-        confirm: false,
+        dialogs: true,
+        confirm: true,
         dropzone: false,
         paginator: false,
         keymap: false,

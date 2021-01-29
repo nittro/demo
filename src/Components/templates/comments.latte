@@ -4,9 +4,10 @@
     {foreach $comments as $comment}
       <li class="list-group-item">
         <!-- Disable default transition, history and scrolling when removing a comment -->
+        <!-- Replace window.confirm() with data-prompt -->
         <a n:href="delete! $comment->id" class="btn btn-xs btn-danger pull-right"
                 title="Remove comment"
-                onclick="return window.confirm('Are you sure?');"
+                data-prompt="Are you sure?"
                 data-transition="false"
                 data-history="false"
                 data-scroll-to="false">

@@ -98,3 +98,104 @@ body {
   content: "\e107";
   color: #a94442;
 }
+
+
+
+/* Nittro dialog buttons */
+
+.nittro-dialog-button,
+.nittro-dialog-button-text {
+    display: inline-block;
+    padding: 6px 12px;
+    margin: 0 6px;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    touch-action: manipulation;
+    cursor: pointer;
+    user-select: none;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
+
+.nittro-dialog-button:focus,
+.nittro-dialog-button:active:focus,
+.nittro-dialog-button-text:focus,
+.nittro-dialog-button-text:active:focus {
+    outline: 5px auto -webkit-focus-ring-color;
+    outline-offset: -2px;
+}
+
+.nittro-dialog-button:focus,
+.nittro-dialog-button:hover,
+.nittro-dialog-button-text:focus,
+.nittro-dialog-button-text:hover {
+    color: #333;
+    text-decoration: none;
+}
+
+.nittro-dialog-button:active,
+.nittro-dialog-button-text:active {
+    background-image: none;
+    outline: 0;
+    box-shadow: inset 0 3px 5px rgba(0, 0, 0, .125);
+}
+
+.nittro-dialog-button {
+    color: #fff;
+    background-color: #337ab7;
+    border-color: #2e6da4;
+}
+
+.nittro-dialog-button:focus {
+    color: #fff;
+    background-color: #286090;
+    border-color: #122b40;
+}
+
+.nittro-dialog-button:hover {
+    color: #fff;
+    background-color: #286090;
+    border-color: #204d74;
+}
+
+.nittro-dialog-button:active {
+    color: #fff;
+    background-color: #286090;
+    background-image: none;
+    border-color: #204d74;
+}
+
+.nittro-dialog-button:active:hover {
+    color: #fff;
+    background-color: #204d74;
+    border-color: #122b40;
+}
+
+.nittro-dialog-button-text {
+    font-weight: normal;
+    color: #337ab7;
+    border-radius: 0;
+}
+
+.nittro-dialog-button-text,
+.nittro-dialog-button-text:active {
+    background-color: transparent;
+    box-shadow: none;
+}
+
+.nittro-dialog-button-text,
+.nittro-dialog-button-text:hover {
+    border-color: transparent;
+}
+
+.nittro-dialog-button-text:hover,
+.nittro-dialog-button-text:focus {
+    color: #23527c;
+    text-decoration: underline;
+    background-color: transparent;
+}

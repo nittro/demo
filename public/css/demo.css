@@ -1,25 +1,25 @@
 body {
-    padding-top: 70px;
-    padding-bottom: 30px;
+  padding-top: 70px;
+  padding-bottom: 30px;
 }
 
 .post-image {
-    margin: 0 0 2em;
+  margin: 0 0 2em;
 }
 
 .post-content {
-    margin: 0 0 2em;
-    font-size: 1.4em;
+  margin: 0 0 2em;
+  font-size: 1.4em;
 }
 
 .post-content::first-letter {
-    display: block;
-    float: left;
-    margin: 4px 5px 0;
-    font-family: "Times", serif;
-    font-size: 6em;
-    line-height: 0.6;
-    color: #333;
+  display: block;
+  float: left;
+  margin: 4px 5px 0;
+  font-family: "Times", serif;
+  font-size: 6em;
+  line-height: 0.6;
+  color: #333;
 }
 
 .post-content::after {
@@ -40,6 +40,61 @@ body {
   z-index: 1100;
 }
 
+
+/* let's also make nittro flashes look like bootstrap alerts */
+
+.nittro-flash {
+  padding: 15px;
+  margin-bottom: 20px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+}
+
 .nittro-flash.nittro-flash-success {
+  color: #3c763d;
   background-color: #dff0d8;
+  border-color: #d6e9c6;
+}
+
+.nittro-flash.nittro-flash-info {
+  color: #31708f;
+  background-color: #d9edf7;
+  border-color: #bce8f1;
+}
+
+.nittro-flash.nittro-flash-warning {
+  color: #8a6d3b;
+  background-color: #fcf8e3;
+  border-color: #faebcc;
+}
+
+.nittro-flash.nittro-flash-error {
+  color: #a94442;
+  background-color: #f2dede;
+  border-color: #ebccd1;
+}
+
+
+/* form errors */
+.form-errors {
+  list-style: none;
+  margin: 10px 0;
+  padding: 0;
+}
+
+.form-errors:empty {
+  margin: 0;
+}
+
+.form-errors .error {
+  margin: 0;
+  padding: 0;
+}
+
+.form-errors .error::before {
+  display: inline-block;
+  margin: 0 0.5em;
+  font-family: 'Glyphicons Halflings';
+  content: "\e107";
+  color: #a94442;
 }

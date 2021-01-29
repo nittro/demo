@@ -37,11 +37,16 @@
         <h1>Nittro Demo</h1>
       </header>
 
-      <div>
-        <div n:foreach="$flashes as $flash" n:class="alert, 'alert-' . $flash->type">{$flash->message}</div>
-      </div>
+      <!--
+          This is all that's needed to render the presenter's flash messages.
+          The bonus is that the HTML structure this will create when rendering
+          flash messages in the template will be the same as when flashes are
+          rendered by Nittro, so they'll look the same.
+       -->
+      <div n:flashes></div>
 
-      <article n:snippet="content" n:inner-block="content"></article>
+      <!-- Let's also make things look a little more alive -->
+      <article n:snippet="content" n:inner-block="content" class="nittro-transition-auto nittro-transition-fade"></article>
 
     </div>
   </body>

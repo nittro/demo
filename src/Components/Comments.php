@@ -38,7 +38,12 @@ class Comments extends Control
     $this->model->deleteComment($id);
 
     $this->flashMessage('Comment deleted.', 'success');
-    $this->getPresenter()->redirect('this');
+
+    /* Replace $presenter->redirect() with $presenter->postGet() ... */
+    $this->getPresenter()->postGet('this');
+
+    /* ... and redraw the appropriate snippets. */
+    $this->redrawControl('list');
   }
 
   public function render() : void
@@ -54,7 +59,10 @@ class Comments extends Control
     $this->model->addComment($this->postId, $values);
 
     $this->flashMessage('Comment added.', 'success');
-    $this->getPresenter()->redirect('this');
+
+    /* Same as above. */
+    $this->getPresenter()->postGet('this');
+    $this->redrawControl('list');
   }
 
 

@@ -1,5 +1,6 @@
 extensions:
   - Contributte\EventDispatcher\DI\EventDispatcherExtension
+  - Nittro\Bridges\NittroDI\NittroExtension
 
 parameters:
 

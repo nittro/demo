@@ -22,7 +22,7 @@ const builder = new nittro.Builder({
         routing: false
     },
     extras: {
-        checklist: false,
+        checklist: true,
         dialogs: true,
         confirm: true,
         dropzone: false,
